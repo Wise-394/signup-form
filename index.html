@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-card">
+        <h1>Sign up Form</h1>
+        <form novalidate>
+            <div class="email-container">
+                <label for="email">Enter Email:</label>
+                <input type="email" name="email" id="email" >
+            </div>
+            <div class="country-postal-container">
+                <div class="country-container">
+                    <label for="country">Enter Country:</label>
+                    <input type="text" name="country" id="country" minlength="4">
+                </div>
+                <div class="postal-container">
+                    <label for="postal">Enter Postal Code:</label>
+                    <input type="text" name="postal" id="postal" minlength="1">
+                </div>
+            </div>
+            <div class="password-container">
+                <label for="password">Enter Password:</label>
+                <input type="password" name="password" id="password" minlength="8">
+            </div>
+            <div class="repeat-password-container">
+                <label for="repeat-password">Repeat Password: </label>
+                <input type="password" name="repeat-password" id="repeat-password">
+            </div>
+            <button type="button">Sign Up</button>
+        </form>
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
+
+<!-- Email, Country, Postal Code, Password and Password Confirmation fields -->

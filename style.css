@@ -1,0 +1,100 @@
+:root {
+    --background-color : #000814;
+    --primary-color: #003566;
+    --secondary-color: hsl(209, 100%, 30%);
+    --accent: #ffc300;
+    --color: hsl(75, 6%, 75%);
+
+
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--background-color);
+    color: var(--color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--accent);
+    padding: 0.7em;
+    font-weight: 900;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 0;
+    letter-spacing: 0.1rem;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    gap: 1rem;
+    width: min(25rem, 90%);
+    box-shadow: 0 2px 8px var(--primary-color) inset;
+
+    border: 1px solid var(--primary-color);
+    border-radius: 12px;
+}
+.login-card > h1 {
+    color: var(--color);
+    letter-spacing: 0.05rem;
+    
+}
+
+form {
+    gap: 1rem;
+    width: 100%;
+    
+}
+
+form, form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.country-postal-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    gap: 0.5rem;
+}
+.country-postal-container > div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+}
+
+
+form input {
+    padding: 0.5rem 0.2rem;
+    border-radius: 6px;
+    background-color: var(--color);
+    width: 100%;
+}
+
+form input:invalid {
+    border: 1px solid red;
+}
+
+form label {
+    font-weight: 100;
+    font-size: 0.9;
+    color: var(--color);
+}
+
