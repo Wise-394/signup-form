@@ -1,40 +1,13 @@
 class View {
     static init() {
-        // email,country, postal password, repeat-password
-        const email = document.querySelector("#email")
-        email.addEventListener("input", () => {
-            email.classList.add("touched")
-            Validator.validateEmail(email)
+        const inputs = document.querySelectorAll("form input")
+        inputs.forEach((input) => {
+            input.addEventListener("touched", () => Validator.validate(input))
         })
-        email.addEventListener("input", () => Validator.validateEmail(email))
 
-        const country = document.querySelector("#country")
-        country.addEventListener("input", () => {
-            country.classList.add("touched")
-            Validator.validateCountry(country)
+         inputs.forEach((input) => {
+            input.addEventListener("input", () => Validator.validate(input))
         })
-        country.addEventListener("input", () => Validator.validateCountry(country))
-
-        const postal = document.querySelector("#postal")
-        postal.addEventListener("input", () => {
-            postal.classList.add("touched")
-            Validator.validatePostal(postal)
-        })
-        postal.addEventListener("input", () => Validator.validatePostal(postal))
-
-        const password = document.querySelector("#password")
-        password.addEventListener("input", () => {
-            password.classList.add("touched")
-            Validator.validatePassword(password)
-        })
-        password.addEventListener("input", () => Validator.validatePassword(password))
-
-        const repeatPassword = document.querySelector("#repeat-password")
-        repeatPassword.addEventListener("input", () => {
-            repeatPassword.classList.add("touched")
-            Validator.validateRepeatPassword(repeatPassword)
-        })
-        repeatPassword.addEventListener("input", () => Validator.validateRepeatPassword(repeatPassword))
     }
 
     static editValidationText(type, text) {
@@ -89,6 +62,23 @@ class View {
 }
 
 class Validator {
+    static validate(input){
+        if (input.id == "email"){
+            this.validateEmail(input)
+        } else if (input.id == "country") {
+            this.validateCountry(input)
+        } else if (input.id == "postal") {
+            this.validatePostal(input)
+        } else if (input.id == "password") {
+            this.validatePassword(input)
+        } else if (input.id == "repeat-password") {
+            this.validateRepeatPassword(input)
+        } else {
+            console.log("Invalid input element id")
+        }
+
+    }
+
     static validateEmail(email) {
         if (!email.value) {
             View.editValidationText("email", "Email is required")
