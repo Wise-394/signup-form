@@ -32,7 +32,7 @@ This is a sign-up form project built as part of __The Odin Project__ curriculum.
 
 ## 🔗 Live Demo
 
-[View Live](https://wise-394.github.io/sign-up-form) 
+[View Live](https://wise-394.github.io/signup-form) 
 
 ---
 
