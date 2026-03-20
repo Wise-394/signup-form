@@ -5,9 +5,12 @@ class View {
             input.addEventListener("touched", () => Validator.validate(input))
         })
 
-         inputs.forEach((input) => {
+        inputs.forEach((input) => {
             input.addEventListener("input", () => Validator.validate(input))
         })
+
+        const submit = document.querySelector("form > button")
+        submit.addEventListener("click", () => Validator.formSubmit(inputs))
     }
 
     static editValidationText(type, text) {
@@ -59,20 +62,43 @@ class View {
 
         span.textContent = text
     }
+
+    static failSubmit() {
+        const form = document.querySelector("form")
+        var span = document.querySelector(".span-submit")
+        if (!span) {
+            span = document.createElement("span")
+            span.classList.add("span-submit")
+            form.appendChild(span)
+        }
+        span.textContent = "Fill up all the forms properly"
+    }
+
+    static successSubmit() {
+        const form = document.querySelector("form")
+        var span = document.querySelector(".span-submit")
+        if (!span) {
+            span = document.createElement("span")
+            span.classList.add("span-submit")
+            form.appendChild(span)
+        }
+        span.textContent = "👍nice"
+    }
+
 }
 
 class Validator {
-    static validate(input){
-        if (input.id == "email"){
+    static validate(input) {
+        if (input.id == "email") {
             this.validateEmail(input)
         } else if (input.id == "country") {
-            this.validateCountry(input)
+            this.#validateCountry(input)
         } else if (input.id == "postal") {
-            this.validatePostal(input)
+            this.#validatePostal(input)
         } else if (input.id == "password") {
-            this.validatePassword(input)
+            this.#validatePassword(input)
         } else if (input.id == "repeat-password") {
-            this.validateRepeatPassword(input)
+            this.#validateRepeatPassword(input)
         } else {
             console.log("Invalid input element id")
         }
@@ -92,7 +118,7 @@ class Validator {
         }
     }
 
-    static validateCountry(country) {
+    static #validateCountry(country) {
         if (!country.value) {
             View.editValidationText("country", "Country is required")
             country.setCustomValidity("Country is required")
@@ -105,7 +131,7 @@ class Validator {
         }
     }
 
-    static validatePostal(postal) {
+    static #validatePostal(postal) {
         if (!postal.value) {
             View.editValidationText("postal", "Postal code is required")
             postal.setCustomValidity("Postal code is required")
@@ -118,7 +144,7 @@ class Validator {
         }
     }
 
-    static validatePassword(password) {
+    static #validatePassword(password) {
         if (!password.value) {
             View.editValidationText("password", "Password is required")
             password.setCustomValidity("Password is required")
@@ -131,7 +157,7 @@ class Validator {
         }
     }
 
-    static validateRepeatPassword(repeatPassword) {
+    static #validateRepeatPassword(repeatPassword) {
         const password = document.querySelector("#password")
         if (!repeatPassword.value) {
             View.editValidationText("repeatPassword", "Please repeat your password")
@@ -143,6 +169,20 @@ class Validator {
             View.editValidationText("repeatPassword", "")
             repeatPassword.setCustomValidity("")
         }
+    }
+
+    static formSubmit(inputs) {
+        const inputsArray = Array.from(inputs)
+        inputsArray.forEach(input => Validator.validate(input))
+
+        const allValid = inputsArray.every(input => input.validity.valid)
+
+        if (!allValid) {
+            View.failSubmit()
+            return
+        }
+
+        View.successSubmit()
     }
 }
 
